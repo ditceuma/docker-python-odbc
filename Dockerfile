@@ -63,11 +63,11 @@ WORKDIR /application
 # Install Python Dependences
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["waitress-serve", "--call", "--listen=0.0.0.0:5000", "app:create_app"]
+# ENTRYPOINT ["waitress-serve", "--call", "--listen=0.0.0.0:5000", "app:create_app"]
 
-# CMD ["waitress-serve", "--call", "--listen=0.0.0.0:5000", "app:create_app"]
+CMD ["waitress-serve", "--call", "--listen=0.0.0.0:5000", "app:create_app"]
 # CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:create_app()"]
 
-EXPOSE 5000
+# EXPOSE 5000
 
-CMD ["echo", "$HOME"]
+# ENTRYPOINT [ "/bin/bash" ]
