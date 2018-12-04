@@ -4,9 +4,8 @@ ENV PYENV_ROOT=$HOME/.pyenv
 ENV PATH=$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 
 # Install Ubuntu Dependences
-RUN apt-get update
-RUN apt-get upgrade -y
-
+RUN apt-get update && apt-get upgrade -y
+    
 RUN apt-get install -y \
     curl \
     apt-transport-https \
@@ -63,11 +62,4 @@ WORKDIR /application
 # Install Python Dependences
 RUN pip install -r requirements.txt
 
-# ENTRYPOINT ["waitress-serve", "--call", "--listen=0.0.0.0:5000", "app:create_app"]
-
 CMD ["waitress-serve", "--call", "--listen=0.0.0.0:5000", "app:create_app"]
-# CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:create_app()"]
-
-# EXPOSE 5000
-
-# ENTRYPOINT [ "/bin/bash" ]
