@@ -28,8 +28,7 @@ RUN apt-get install -y \
     unixodbc-dev \
     tzdata
 
-RUN echo "America/Fortaleza" > /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
+RUN ln -fs /usr/share/zoneinfo/America/Fortaleza /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
 # Install Pyenv
 RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
