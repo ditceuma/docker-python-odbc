@@ -1,5 +1,6 @@
 FROM ubuntu:16.04
 
+# Define Your Envs Config
 ENV PYENV_ROOT=$HOME/.pyenv
 ENV PATH=$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 
@@ -28,6 +29,7 @@ RUN apt-get install -y \
     unixodbc-dev \
     tzdata
 
+# Config Timezone America/Fortaleza
 RUN ln -fs /usr/share/zoneinfo/America/Fortaleza /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
 # Install Pyenv
