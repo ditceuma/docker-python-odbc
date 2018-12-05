@@ -25,7 +25,11 @@ RUN apt-get install -y \
     tk-dev \
     libffi-dev \
     liblzma-dev \
-    unixodbc-dev
+    unixodbc-dev \
+    tzdata
+
+RUN echo "America/Fortaleza" > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Install Pyenv
 RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
