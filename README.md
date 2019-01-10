@@ -2,7 +2,7 @@
 
 *A simple Docker Image set with Python 3.6.5 using Pyenv and with ODBC.*
 
-Este repositórito tem como objetivo buildar uma imagem personalizada utilizando Python 3.6.5 e o Driver ODBC para conexão com SQL Server.
+Este repositórito contém um [Dockerfile](./Dockerfile) tem como objetivo buildar uma imagem personalizada utilizando Python 3.6.5 e o Driver ODBC para conexão com SQL Server.
 
 O ```requirements.txt``` possui pacotes básicos necessários para a utilização da imagem sem a necessidade de um ```docker-compose.yml```.
 
