@@ -1,11 +1,8 @@
-FROM ubuntu:16.04 AS build
+FROM ubuntu:16.04
 
 # Development: where the actual coding takes place
 # Staging: where the application is reviewed and tested
 # Production: where the final version of the application is hosted
-
-ENV http_proxy = "http://4967:mdalycod@proxy.ceuma.edu.br:3128"
-ENV https_proxy = "http://4967:mdalycod@proxy.ceuma.edu.br:3128"
 
 # Define Your Envs Config
 ENV PYENV_ROOT=$HOME/.pyenv
@@ -66,13 +63,12 @@ RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 # Create Main Path Application
 RUN mkdir application
 
-WORKDIR /application
-
 # Copy requirements Project for Main Path
 COPY requirements.txt /application
 
+WORKDIR /application
+
 # Install Python Dependences
 RUN pip install -r requirements.txt
-FROM python:3.6-slim-jessie AS production
-COPY --from=build /application /application
+
 CMD ["waitress-serve", "--call", "--listen=0.0.0.0:5000", "app:create_app"]
