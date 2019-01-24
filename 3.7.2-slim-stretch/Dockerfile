@@ -21,4 +21,10 @@ RUN ACCEPT_EULA=Y apt-get install msodbcsql17 mssql-tools -y
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 
+RUN echo "---> Cleaning up" \
+ && apt-get autoremove -y \
+ && apt-get autoclean -y \
+ && apt-get clean -y \
+ && rm -rf /tmp/*
+
 WORKDIR /application
